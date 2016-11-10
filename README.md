@@ -2,6 +2,8 @@
 
 A simple TodoList using React, Redux and localStorage.
 
+[Demo](https://yilsonl.github.io/todolist-react-redux/public/)
+
 ## Quick Start
 
 #### Step1
