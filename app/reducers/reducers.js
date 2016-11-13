@@ -1,7 +1,8 @@
 var uuid = require('node-uuid');
-var moment = require('moment');
 
 export var todosReducer = (state = [], action) => {
+  var timestamp = new Date().getTime();
+
   switch (action.type) {
     case 'ADD_TODOS':
       return [
@@ -15,7 +16,7 @@ export var todosReducer = (state = [], action) => {
           id: uuid(),
           text: action.text,
           completed: false,
-          createdAt: moment().unix(),
+          createdAt: timestamp,
           completedAt: undefined
         }
       ];
@@ -40,7 +41,7 @@ export var todosReducer = (state = [], action) => {
           return {
             ...todo,
             completed: !todo.completed,
-            completedAt: !todo.completed ? moment().unix() : undefined
+            completedAt: !todo.completed ? timestamp : undefined
           };
         } else {
           return todo;

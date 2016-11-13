@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import moment from 'moment';
 
 import * as actions from 'actions';
 
@@ -82,14 +81,18 @@ class Todo extends React.Component {
 
     var renderDate = () => {
       var message = 'Created at ';
-      var timestamp = createdAt;
+      var timestamp = new Date(createdAt);
 
       if(completed) {
         message = 'Completed at ';
-        timestamp = completedAt;
+        timestamp = new Date(completedAt);
       }
 
-      return message + moment.unix(timestamp).format('DD MMM YYYY - HH:mm');
+      var d = timestamp.toString().slice(0, 21).split(' ');
+
+      var formatedDate = [d[2], d[1], d[3]].join(' ') + ' - ' + d[4] + ' - ' + d[0];
+
+      return message + formatedDate;
     };
 
     var renderToggle = () => {
